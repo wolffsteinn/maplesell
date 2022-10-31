@@ -17,20 +17,18 @@ const IndivShops = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/home/${shopId}`)
+      .get(`${process.env.REACT_APP_BACKENDURL}/home/${shopId}`)
       .then((res) => {
         setIndivShops(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/user/${indexId + 1}`)
+      .get(`${process.env.REACT_APP_BACKENDURL}/user/${indexId + 1}`)
       .then((res) => {
         setUserInventory(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -64,7 +62,7 @@ const IndivShops = () => {
     };
 
     await axios
-      .put(`http://localhost:3000/home/${shopId}`, itemStatus)
+      .put(`${process.env.REACT_APP_BACKENDURL}/home/${shopId}`, itemStatus)
       .then((res) => console.log("Posted", res, itemStatus))
       .catch((err) => console.log(err));
     navigate(`/home`);
@@ -126,7 +124,6 @@ const IndivShops = () => {
             <div className="shopItems">{shopItems}</div>
           </div>
           <div className="userDiv">
-            {/* items below are hard coded just to test design and scrollbar function */}
             <div>
               <div className="topContainer">
                 <h2 className="userName">{currentUserName} Inventory</h2>

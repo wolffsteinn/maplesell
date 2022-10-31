@@ -4,6 +4,9 @@
 
 Run `npm i` for both backend and frontend files
 
+Note:
+if you do not have `nodemon` globally installed, please install it (`npm i nodemon`) after running `npm i`
+
 Backend Dialect: Postgres. If you are using other dialects, please amend accordingly
 
 ## Things to note:

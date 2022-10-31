@@ -18,8 +18,8 @@ const SellingForm = () => {
 
   //creating the select options for both shops and category
   let apiCalls = [
-    "http://localhost:3000/home",
-    "http://localhost:3000/category",
+    `${process.env.REACT_APP_BACKENDURL}/home`,
+    `${process.env.REACT_APP_BACKENDURL}/category`,
   ];
 
   useEffect(() => {
@@ -29,7 +29,6 @@ const SellingForm = () => {
         axios.spread((shop, category) => {
           setShopName(shop.data);
           setCategoryName(category.data);
-          console.log({ shop, category });
         })
       )
       .catch((err) => console.log(err));
@@ -48,7 +47,7 @@ const SellingForm = () => {
 
   // set the selected option from shopNameOptions / categoryNameOptions
   // need to coerce it into a [{}] so that .map recognizes it as a function??
-  // because mapping you need an array!!!
+  // because mapping you need an array
   const handleCategorySelect = (e) => {
     setCategory([e]);
   };
@@ -60,8 +59,6 @@ const SellingForm = () => {
   const handlePhotoUpload = (e) => {
     setInputFile(e.target.files[0]);
   };
-
-  console.log(inputFile);
 
   const handleListingName = (e) => {
     setName(e.target.value);
@@ -76,7 +73,6 @@ const SellingForm = () => {
   };
 
   const handleSubmit = async (e) => {
-    console.log("submit running");
     e.preventDefault();
 
     // extracting the id from selected shop/category
@@ -94,13 +90,12 @@ const SellingForm = () => {
     formData.append("seller_id", indexId + 1);
 
     await axios
-      .post("http://localhost:3000/home", formData)
+      .post(`${process.env.REACT_APP_BACKENDURL}/home`, formData)
       .then((res) => console.log(formData, res))
       .catch((err) => console.log(err));
     e.target.reset();
     navigate("/home");
     alert("Item listed! congrats!");
-    console.log("submit ran");
   };
 
   return (

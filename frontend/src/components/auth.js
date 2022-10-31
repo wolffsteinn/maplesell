@@ -15,10 +15,9 @@ const Auth = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/user")
+      .get(`${process.env.REACT_APP_BACKENDURL}/user`)
       .then((res) => {
         setAllUsers(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -42,14 +41,14 @@ const Auth = () => {
       currentUserName = allUsers[indexId].username;
 
       axios
-        .get(`http://localhost:3000/user/${indexId - 1}`)
+        .get(`${process.env.REACT_APP_BACKENDURL}/user/${indexId - 1}`)
         .then((res) => {
           userInventory = res.data;
         })
         .catch((err) => console.log(err));
     } else if (!allUserEmails.includes(user.id)) {
       axios
-        .post("http://localhost:3000/user", {
+        .post(`${process.env.REACT_APP_BACKENDURL}/user`, {
           email: user.email,
           password: user.password,
           username: user.nickname,

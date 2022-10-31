@@ -22,10 +22,9 @@ const Homepage = () => {
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/home")
+      .get(`${process.env.REACT_APP_BACKENDURL}/home`)
       .then((res) => {
         setShops(res.data);
-        console.log(res.data);
       })
       .catch((err) => console.log(err));
   }, []);

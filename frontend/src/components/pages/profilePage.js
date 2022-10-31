@@ -10,11 +10,9 @@ const ProfilePage = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/user/${indexId + 1}`)
+      .get(`${process.env.REACT_APP_BACKENDURL}/user/${indexId + 1}`)
       .then((res) => {
         setUserInventory(res.data);
-        console.log(res.data);
-        console.log("user's inventory");
       })
       .catch((err) => console.log(err));
   }, []);
@@ -26,7 +24,7 @@ const ProfilePage = () => {
             src={
               inventory.photo.startsWith("http")
                 ? inventory.photo
-                : `http://localhost:3000/${inventory.photo}`
+                : `${process.env.REACT_APP_BACKENDURL}/${inventory.photo}`
             }
             alt={inventory.name}
             className="itemPhoto"

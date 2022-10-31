@@ -9,10 +9,6 @@ class UsersRouter {
     router.get("/", this.controller.getAll.bind(this.controller));
     router.post("/", this.controller.insertUser.bind(this.controller));
     router.get("/:buyerId", this.controller.getInventory.bind(this.controller));
-    // router.get(
-    //   `/:${currentUserId}`,
-    //   this.controller.getInventory.bind(this.controller)
-    // );
     return router;
   }
 }

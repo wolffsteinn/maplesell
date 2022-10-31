@@ -1,6 +1,4 @@
 class BaseController {
-  // but where does shopModel come from?
-  // im assuming here that model = listings model
   constructor(model) {
     this.model = model;
   }
@@ -10,7 +8,6 @@ class BaseController {
   // getting all items available
   async getAll(req, res) {
     try {
-      console.log("hello!");
       const output = await this.model.findAll();
       return res.json(output);
     } catch (err) {

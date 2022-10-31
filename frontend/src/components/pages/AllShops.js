@@ -15,8 +15,6 @@ const AllShops = () => {
     shopNames.push(name);
   }
 
-  console.log(currentUserName);
-
   return (
     <>
       <div className="row1">

@@ -18,7 +18,7 @@ const ShopItems = ({ shopItem }) => {
     if (shopItem.photo.startsWith("http")) {
       return shopItem.photo;
     } else {
-      return `http://localhost:3000/${shopItem.photo}`;
+      return `${process.env.REACT_APP_BACKENDURL}/${shopItem.photo}`;
     }
   };
 
@@ -37,9 +37,6 @@ const ShopItems = ({ shopItem }) => {
     }
     setClicked(!clicked);
   };
-
-  console.log({ currSelectedDiv });
-  console.log({ clickedDiv });
 
   return (
     <>

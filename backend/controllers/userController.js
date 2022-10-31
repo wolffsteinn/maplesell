@@ -16,10 +16,7 @@ class UserController extends BaseController {
         },
       });
       return res.json(output);
-
-      // console.log("retrieved!");
     } catch (err) {
-      console.log(err);
       return res.status(400).json({ error: true, msg: err });
     }
   }

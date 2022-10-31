@@ -1,6 +1,4 @@
-//importing the db over so that insertOne has access
 const db = require("../db/models");
-//testing uploading file
 const multer = require("multer");
 const ListingModel = db.listing;
 const imgFilter = (req, file, cb) => {
@@ -27,8 +25,6 @@ const upload = multer({
 }).single("photo");
 
 const insertOne = async (req, res) => {
-  console.log(req.body);
-  console.log(req.file);
   const newListing = await ListingModel.create({
     name: req.body.name,
     price: req.body.price,
@@ -38,7 +34,6 @@ const insertOne = async (req, res) => {
     photo: req.file.path,
     seller_id: req.body.seller_id,
   });
-  console.log(newListing);
   return res.json(newListing);
 };
 

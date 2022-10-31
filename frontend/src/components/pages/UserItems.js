@@ -18,7 +18,7 @@ const UserItems = ({ shopItem }) => {
     if (shopItem.photo.startsWith("http")) {
       return shopItem.photo;
     } else {
-      return `http://localhost:3000/${shopItem.photo}`;
+      return `${process.env.REACT_APP_BACKENDURL}/${shopItem.photo}`;
     }
   };
 
@@ -51,14 +51,11 @@ const UserItems = ({ shopItem }) => {
         </div>
         <div className="itemRight">
           <div className={`itemName ${clicked ? "clickedColour" : ""}`}>
-            {/* but doesnt seem to work if you re-click */}
-            {/* have to change it to span for the reds to disappear */}
             <p className="itemText">{shopItem.name}</p>
           </div>
 
           <div className={`price ${clicked ? "clickedColour" : ""}`}>
             <img src={mesos} className="mesos" alt="mesos: " />
-            {/* have to change it to span for the reds to disappear */}
             <p className="priceText">{shopItem.price} mesos</p>
             <br />
           </div>

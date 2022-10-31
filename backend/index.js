@@ -1,6 +1,7 @@
+require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
-const PORT = 3000;
+const PORT = process.env.PORT;
 
 //importing Routers
 const ListingsRouter = require("./routers/listingRouter");
@@ -11,8 +12,7 @@ const CategoriesRouter = require("./routers/categoryRouter");
 const ListingsController = require("./controllers/listingController");
 const UserController = require("./controllers/userController");
 const CategoryController = require("./controllers/categoryController");
-// uploading the photos with their controller...
-const UploadFormController = require("./controllers/uploadFormContoller");
+const UploadFormController = require("./controllers/uploadFormController");
 
 //importing DB
 const db = require("./db/models/index");
@@ -23,7 +23,7 @@ const listingsController = new ListingsController(listing, category, shop);
 const usersController = new UserController(user, listing);
 const categoriesController = new CategoryController(category);
 
-//initializing controllers
+//initializing routes
 const listingsRouter = new ListingsRouter(listingsController).routes();
 const usersRouter = new UsersRouter(usersController).routes();
 const categoriesRouter = new CategoriesRouter(categoriesController).routes();
@@ -42,14 +42,12 @@ app.get("/", checkJwt, (req, res) => {
   res.send("Hello, World!");
 });
 
-//enable reading JSON request bodies
 app.use(express.json());
 
 //enable and use router
 app.use("/home", listingsRouter);
 app.use("/user", usersRouter);
 app.use("/category", categoriesRouter);
-
 // to obtain photos from the localhost folder
 app.use("/uploadedImg", express.static("./uploadedImg"));
 
